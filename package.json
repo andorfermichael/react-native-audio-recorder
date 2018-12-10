@@ -20,7 +20,7 @@
     "url": "https://github.com/audvice/react-native-audio-recorder.git"
   },
   "peerDependencies": {
-    "react-native": "0.57.5"
+    "react-native": "0.57.7"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
