@@ -65,7 +65,7 @@ public class AudioRecording {
       this.isOverwriting = true;
       this.pointToOverwriteRecordingInSeconds = startTimeInMs / 1000;
 
-      // Remove timestamp string which is added automatically by Android
+      // Remove timestamp string
       String fileNameCleaned = fileName.substring(0, fileName.indexOf("?"));
 
       //This should be set here properly  so that it can be later used in case of overwriting.
@@ -266,16 +266,15 @@ public class AudioRecording {
         fos2.close();
       }
 
-        /// -----------------------------------------------------------------------------------------------
-        /// 4. Cleanup
-        ///
+      /// -----------------------------------------------------------------------------------------------
+      /// 4. Cleanup
+      ///
 
-        // Delete temporary files
-//      FileUtils.deleteFile(previousTape); // Don't delete the original file (previous file which was given to startRecording).
-        FileUtils.deleteFile(currentTape);
-        FileUtils.deleteFile(originalCutTape);
-        FileUtils.deleteFile(originalCurrentMergedTape);
-      }
+      // Delete temporary files
+      FileUtils.deleteFile(currentTape);
+      FileUtils.deleteFile(originalCutTape);
+      FileUtils.deleteFile(originalCurrentMergedTape);
+    }
 
     return destinationPath;
   }
