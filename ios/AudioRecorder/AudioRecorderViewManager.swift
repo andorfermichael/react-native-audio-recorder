@@ -628,7 +628,6 @@ class AudioRecorderViewManager : RCTViewManager {
     createAndStoreTapeFromRecordings(
       onSuccess: { success in
         self.jsonArray["success"] = true
-        resolve(self.jsonArray.rawString());
       },
       onError: { error in
         self.jsonArray["success"] = false
@@ -636,5 +635,16 @@ class AudioRecorderViewManager : RCTViewManager {
         reject("Error", self.jsonArray.rawString(), e)
       }
     )
+    
+    // Stop AudioKit
+    do {
+      try AudioKit.stop()
+      resolve(self.jsonArray.rawString());
+    } catch {
+      // Aborted with error
+      AKLog("Cleanup failed.")
+      self.jsonArray["error"].stringValue = error.localizedDescription + " - Cleanup not necessary."
+      reject("Error", self.jsonArray.rawString(), e)
+    }
   }
 }
